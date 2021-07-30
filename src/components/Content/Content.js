@@ -312,12 +312,12 @@ function Content() {
             localStorage.setItem('residuary', JSON.stringify(share));
             setTabIndex(2)
         }
-        else {
-            if (totalShare < 100)
-                alert.show('Assign 100% of the residuary properties')
-            else
-                alert.show("More Than 100% Residuary Property Assigned")
-        }
+        // else {
+        //     if (totalShare < 100)
+        //         alert.show('Assign 100% of the residuary properties')
+        //     else
+        //         alert.show("More Than 100% Residuary Property Assigned")
+        // }
     }
     useEffect(() => {
         const localImmovableAssets = JSON.parse(localStorage.getItem('immovableAssets'));
