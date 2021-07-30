@@ -1,0 +1,33 @@
+
+#header {
+  width :100%;
+  height : 80vh;
+  background: url('../../static/index1.jpg');
+}
+
+
+
+.brand-name {
+  margin: 0 0 10px 0;
+  font-size : 4rem;
+  font-weight: 1000;
+  color : #0072bc !important;
+}
+
+.my-3 {
+   font-size:2.5rem;
+   font-weight:600;
+ }
+
+ card .img{
+   transform:scale(0.7);
+ }
+
+ #faq{
+   padding-left : 150px;
+   margin-top:45px;
+
+ }
+ body{
+     color:#1f1f1f;
+ }
