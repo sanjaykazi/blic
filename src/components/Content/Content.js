@@ -586,9 +586,9 @@ function Content() {
         }
         else {
             if (totalShare < 100)
-                alert.show('Assign 100% of the residuary properties')
+                alert.show('Please allocate total 100% to the property')
             else
-                alert.show("More Than 100% Residuary Property Assigned")
+                alert.show("You have over allocated property: Share % total for one asset should be 100%")
         }
     }
     return (
