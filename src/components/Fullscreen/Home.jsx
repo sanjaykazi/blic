@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import TermsConditions from './TermsConditions';
 import Modal from 'react-bootstrap/Modal'
+import {Link, Redirect ,Route} from 'react-router-dom';
+import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button'
 // import Index from '../../static/index.jpg'
 // import  {Link} from 'react-router-dom'
@@ -28,42 +30,59 @@ function MyVerticallyCenteredModal(props) {
     </Modal>
   );
 }
-function handleSubmit(e) {
-  e.preventDefault()
-}
 
 
 
 const Home = () => {
+  
+
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('inhandlesubmit')
+    setSubmitted(true);
+    console.log(values);
+    if((submitted && values.fullname) && (values.email && values.phone)){
+      setValid(true);
+      console.log(valid)
+    }
+    
+    }
   // const [phone, setPhone] = useState('');
   // const [fullname, setFullname] = useState('')
   // const [email, setEmail] = useState('')
   const [values, setValues] = useState({
     phone: "",
     fullname: "",
-    email:""
+    email:"",
   });
+
+  
+
+  function renderRedirect(valid){
+    
+    if (valid) {
+      return(<Link to='/will-creator-tool' />)
+    }
+  }
+
   const[submitted, setSubmitted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [valid,setValid]= useState(false);
 
   const handleFullname = (event) => {
-    setValues({...values, fullname: event.target.values})
+    setValues({...values, fullname: event.target.value})
+    
   }
 
   const handlePhone = (event) => {
-    setValues({...values, phone: event.target.values})
+    setValues({...values, phone: event.target.value})
   }
 
   const handleEmail = (event) => {
-    setValues({...values, email: event.target.values})
+    setValues({...values, email: event.target.value})
   }
 
- 
-  const  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("submitted")
-    setSubmitted(true)
-  }
 
  
 
@@ -86,21 +105,21 @@ const Home = () => {
                 <div className='col-lg-4 order-2 order-lg-2 d-flex flex-column justify-content-center' style={{ backgroundColor: 'grey', padding: '10px 50px 50px 50px', borderRadius: '13px' }}>
                   <form  onSubmit={handleSubmit}>
                     <div class="mb-3">
-                      <label class="form-label">Full Name </label>
+                      <label class="form-label">Full Name <span className='required' style={{color:'#db2f23'}}>*</span></label>
                       <input type="Name" class="form-control" value={values.fullname} 
                       onChange={handleFullname} 
                       />
-                     {submitted && !values.firstname ?  <span className="text-danger">please enter the fullname</span> : null}
+                     {submitted && !values.fullname ?  <span className="text-danger">please enter the fullname</span> : null}
                     </div>
                     <div class="mb-3">
-                      <label for="phoneNo" class="form-label">Contact No.</label>
+                      <label for="phoneNo" class="form-label">Contact No. <span className='required' style={{color:'#db2f23'}}>*</span></label>
                       <input type="phoneNo " class="form-control required"value={values.phone}  
                       onChange={handlePhone}
                       />
                         {submitted && !values.phone ?  <span className="text-danger">please enter the phone number</span> : null}
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label ">Email address</label>
+                      <label for="exampleInputEmail1" class="form-label ">Email address <span className='required' style={{color:'#db2f23'}}>*</span></label>
                       <input class="form-control" value={values.email}  
                        onChange={handleEmail}
                       />
@@ -117,8 +136,10 @@ const Home = () => {
                       />
                     </div>
                     <div style={{ display: 'flex' }}>
-                      <button type="submit" id="next-btn" style={{ justifyContent: 'center' }}>
+          
+                      <button type="submit" id="next-btn" style={{ justifyContent: 'center' }} onClick={handleSubmit}>
                        Create Will
+                       {valid && true ? <Redirect to='/will-creator-tool'></Redirect>:null}
                       </button>
                     </div>
                   </form>
