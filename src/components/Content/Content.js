@@ -552,19 +552,6 @@ function Content() {
         return `${date}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${year}`
     }
 
-    function sendEmail(e) {
-        e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-    
-        emailjs.sendForm('service_quv44to', 'template_xt1jll9', e.target, 'user_sM9KXoqjsxA8dejCNkv0M')
-          .then((result) => {
-              window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
-          }, (error) => {
-              console.log(error.text);
-          });
-      }
-    
-
-
 
 
     function setAltBen(e, index) {
@@ -772,12 +759,12 @@ function Content() {
                                         <input value={executor['relation']} onChange={(e) => setExecRelation(e, index)}></input>
                                     </div>
                                     {executors.length === 1 || (executors.length === 2 && executors.length === index + 1) ?
-                                        <div style={{ justifyContent: "right" }} className='form-row'>
+                                        <div style={{ marginLeft:'30px',justifyContent: "right" }} className='form-row'>
                                             <button disabled={executors.length >= 3} onClick={(e) => addExecutor(e)} id="next-btn">Add Executor</button>
                                         </div> : ''}
                                 </div>)}
                             
-                            <div style={{ justifyContent: "right" }} className='form-row'>
+                            <div style={{ justifyContent: "right" , paddingTop:'50px'}} className='form-row'>
                                 <button type='submit' onClick={(e) => submitPersonal(e)} id="next-btn">NEXT: Add Beneficiary</button>
                             </div>
 
@@ -809,7 +796,7 @@ function Content() {
                                     {/* <p style={{ width: '275px', fontSize: '16px' }} className="note-para">(eg. friend, son, sister, etc.)</p> */}
                                     <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
                                 </div>
-                                {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right" }} className='form-row'>
+                                {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right", paddingTop:'25px' }} className='form-row'>
                                     <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
 
                                 </div></> : ''}

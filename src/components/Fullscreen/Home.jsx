@@ -23,10 +23,10 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
         <TermsConditions />
       </Modal.Body>
-      <Modal.Footer>
+      {/* <Modal.Footer>
         <small>By clicking 'Accept' you are agreeing to our terms and conditions.</small>
         <Button onClick={props.onHide}>Accept</Button>
-      </Modal.Footer>
+      </Modal.Footer> */}
     </Modal>
   );
 }
@@ -44,7 +44,7 @@ const Home = () => {
     console.log(values);
     if((submitted && values.fullname) && (values.email && values.phone)){
       setValid(true);
-      console.log(valid)
+     
     }
     
     }
@@ -59,16 +59,12 @@ const Home = () => {
 
   
 
-  function renderRedirect(valid){
-    
-    if (valid) {
-      return(<Link to='/will-creator-tool' />)
-    }
-  }
+
 
   const[submitted, setSubmitted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [valid,setValid]= useState(false);
+  const[ticked,setTicked] = useState(false)
 
   const handleFullname = (event) => {
     setValues({...values, fullname: event.target.value})
@@ -82,7 +78,10 @@ const Home = () => {
   const handleEmail = (event) => {
     setValues({...values, email: event.target.value})
   }
-
+  const toggleTick = (event) => {
+    let t = !ticked
+    setTicked(t);
+  }
 
  
 
@@ -128,18 +127,23 @@ const Home = () => {
                     </div>
 
                     <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }} onClick={() => setModalShow(true)} >Terms and Conditions</a></label>
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1" onClick={()=> {setTicked(true)}}/>
+                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }} onClick={() => setTicked(true)} >Terms and Conditions</a></label>
                       <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
                       />
+                      <div>
+                      {submitted && !ticked ?  <span className="text-danger">please accept terms and conditions</span> : null}
+                      </div>
                     </div>
+                    
                     <div style={{ display: 'flex' }}>
           
                       <button type="submit" id="next-btn" style={{ justifyContent: 'center' }} onClick={handleSubmit}>
                        Create Will
-                       {valid && true ? <Redirect to='/will-creator-tool'></Redirect>:null}
+        
+                       {valid && ticked ? <Redirect to='/will-creator-tool'></Redirect>:null}
                       </button>
                     </div>
                   </form>

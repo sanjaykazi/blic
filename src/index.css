@@ -1,14 +1,16 @@
+@font-face {
+  font-family: 'AllianzSans Bold';
+  font-style: normal;
+  src: local('AllianzSans Bold'), url('./AllianzSans Bold.otf') format('opentype');
+  }
+
 *{
-  font-family: "Allianz Sans";
+  
+  font-family: "AllianzSans Bold";
 }
 
 body {
-  @font-face {
-    font-family: 'Allianz Sans';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Allianz Sans'), url('./ALSANREG.woff') format('woff');
-    }
+  
   margin: 0;
   margin-top: -25px;
   

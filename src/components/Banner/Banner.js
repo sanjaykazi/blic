@@ -5,8 +5,8 @@ function Banner() {
     return (
         <div className='banner'>
             
-   <a class="navbar-brand" href="#">
-    <img src={Logo} alt="Logo" style={{transform:'scale(0.7)'}} />
+   <a class="navbar-brand" href="#" >
+    <img src={Logo} alt="Logo" style={{transform:'scale(0.7)',float:'right'}} />
   </a>
         
         </div>

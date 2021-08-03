@@ -2,7 +2,12 @@
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1.2 !important;
-  font-family: AllianzSans !important;
+  @font-face {
+    font-family: 'AllianzSans Bold' !important;
+    font-style: normal;
+    font-weight: normal;
+    src: local('AllianzSans Bold'), url('./AllianzSans Bold.otf') format('opentype');
+    }
   font-weight: 500 !important;
 }
 .App-header >h1{
