@@ -255,7 +255,7 @@ function Content() {
     //assets State variables
     const [assetType, setAssetType] = useState("Bank Account");
     const [assetType1, setAssetType1] = useState("Flat");
-    const [share, setShare] = useState([]);
+    const [share, setShare] = useState([0]);
     const [area, setArea] = useState('');
     const [assetAreaUnit, setAssetAreaUnit] = useState('')
     const [ownership, setOwnership] = useState('');
@@ -339,6 +339,14 @@ function Content() {
         share.map((temp) => {
             totalShare = totalShare + Number(temp['value']);
         })
+        share.map((temp) => {
+            if (temp['value'].length ===0){
+                temp['value']=0
+            } 
+        })
+            
+
+        
         if (totalShare === 100) {
             e.preventDefault();
             const tempAsset = {
@@ -353,8 +361,10 @@ function Content() {
                 assetPin: assetPin,
                 assetCountry: assetCountry,
                 description: ownership + ',\n' + 'Area: ' + area + ' ' + assetAreaUnit + '\n\nAddress:\n' + assetAddress1 + ', ' + assetAddress2 + ', ' + assetCity + ', ' + assetState + ', ' + assetPin,
-                share: share
-            }
+                share:share
+
+                }
+           
             immovableAssets.push(tempAsset);
             setAssetType1('Flat');
             setAssetAreaUnit('');
@@ -385,6 +395,7 @@ function Content() {
         e.preventDefault();
         var totalShare = 0;
         share.map((temp) => {
+            
             totalShare = totalShare + Number(temp['value']);
         })
         if (totalShare === 100) {
@@ -985,7 +996,8 @@ function Content() {
                                                         <tr key={index}>
                                                             <td>{index + 1}</td>
                                                             <td>{ben[1]}</td>
-                                                            <td><input value={share[index] ? share[index]['value'] : 0} onChange={(e) => handleShareChange(e, ben[1], ben[2], index)} type="number" min="0" max="100"></input>%</td>
+                                        
+                                                            <td><input value={share[index] >0 ? share[index]['value'] : 0} onChange={(e) => handleShareChange(e, ben[1], ben[2], index)} type="number" min="0" max="100"></input>%</td>
                                                         </tr>)}
                                                 </tbody>
                                             </table> : ''}

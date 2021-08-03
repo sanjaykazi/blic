@@ -11,7 +11,7 @@ const Contact = () => {
             <div className = 'container' style={{overflow:'hidden', boxShadow:'none'}}>
             <div class="row margin-top">
     <div class="col-sm-4 block1" style={{justifySelf:'center', borderRight:'1px solid grey'}}>
-      <img src={Group} alt='' style={{transform:'scale(0.7)',marginLeft:'50px',marginRight:'auto',width:'50%'}}></img>
+      <img src={Group} alt='' style={{transform:'scale(0.9)',marginLeft:'50px',marginRight:'auto',width:'50%'}}></img>
       <h4 style={{color:'#0072bc', marginLeft:'60px'}}>Customer Support  </h4>
     </div>
     <div class="col-sm-8">

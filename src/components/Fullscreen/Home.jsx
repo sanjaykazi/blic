@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import {Link, Redirect ,Route} from 'react-router-dom';
 import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button'
-// import Index from '../../static/index.jpg'
+ import Index from '../../static/index.jpg'
 // import  {Link} from 'react-router-dom'
 
 function MyVerticallyCenteredModal(props) {
@@ -44,7 +44,7 @@ const Home = () => {
     console.log(values);
     if((submitted && values.fullname) && (values.email && values.phone)){
       setValid(true);
-     
+   
     }
     
     }
@@ -57,10 +57,25 @@ const Home = () => {
     email:"",
   });
 
-  
-
-
-
+  function checkvalid(e){
+    e.preventDefault();
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)){
+      setEmailvalid(true);
+    }
+    if(isNaN(values.fullname)){
+      setNamevalid(true);
+    }
+    if (values.phone.length ===10){
+      setPhonevalid(true);
+    }
+    let t = phonevalid && namevalid && phonevalid
+    setAllgood(t);
+  }
+  const[allgood, setAllgood] =useState(true)
+  const[namevalid,setNamevalid]=useState(false)
+  const[phonevalid, setPhonevalid]=useState(false);
+  const[emailvalid, setEmailvalid]=useState(false);
+  const [check,setCheck]= useState(false);
   const[submitted, setSubmitted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [valid,setValid]= useState(false);
@@ -87,19 +102,20 @@ const Home = () => {
 
   return (
     <>
-      <section id='header' className='d-flex align-items-center' style={{ paddingBottom: '70px', background: `{Index}` }}>
+      <section id='header' className='d-flex align-items-center' style={{ paddingBottom: '70px', background: `{Index}`}}>
         <div className='container-fluid nav_bg'>
           <div className='row'>
 
-            <div className='col-10 mx-auto'>
+            <div className='col-12 mx-auto'>
               <div className='row'>
-              <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'></div>
-                <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column' style={{justifyContent:'center'}}>
-                  <h1 className='brand-name'> <strong  style={{color:'white', fontSize:'45px', marginTop:'20px'}}>Will Creator</strong> </h1>
-                  <h2 className='my-3' style={{color:'white',alignContent:'center'}}>
-                    “Secure your dear ones.</h2><h2> Express your wishes so that your
+                
+              <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex  flex-column'><img src={Index} style={{transform:'scale(1)', borderRadius:'50%' }}></img></div>
+                <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex  flex-column' style={{justifyContent:'center', marginRight:'40px'}}>
+                  <h1 className='brand-name'> <strong  style={{color:'white', fontSize:'38px', marginTop:'50px', textAlign:'left'  }}>Will Creator</strong> </h1>
+                  <h3  style={{color:'white',textAlign:'center' }}>
+                    “Secure your dear ones.Express your wishes so that your
                     loved ones stay protected.”
-                  </h2>
+                  </h3>
                 </div>
                 <div className='col-md-1 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'></div>
                 <div className='col-lg-4 order-2 order-lg-2 d-flex flex-column justify-content-center' style={{ backgroundColor: 'white', padding: '10px 50px 50px 50px', borderRadius: '13px' }}>
@@ -110,6 +126,7 @@ const Home = () => {
                       onChange={handleFullname} 
                       />
                      {submitted && !values.fullname ?  <span className="text-danger">please enter the fullname</span> : null}
+                     {/* {submitted && !namevalid ?  <span className="text-danger">please enter only characters</span> : null} */}
                     </div>
                     <div class="mb-3">
                       <label for="phoneNo" class="form-label">Contact No. <span className='required' style={{color:'#db2f23'}}>*</span></label>
@@ -117,13 +134,15 @@ const Home = () => {
                       onChange={handlePhone}
                       />
                         {submitted && !values.phone ?  <span className="text-danger">please enter the phone number</span> : null}
+                        {/* {submitted && phonevalid ?  <span className="text-danger">please enter the valid phone number</span> : null} */}
                     </div>
                     <div class="mb-3">
                       <label for="email" class="form-label ">Email address <span className='required' style={{color:'#db2f23'}}>*</span></label>
                       <input type= 'email' id= 'email' name = 'email' class="form-control" value={values.email}  
                        onChange={handleEmail}
                       />
-                         {submitted && !values.email ?  <span className="text-danger">please enter the email</span> : null}
+                         {submitted && !emailvalid ?  <span className="text-danger">please enter the valid email</span> : null}
+                         {/* {submitted && !values.email ?  <span className="text-danger">please enter the phone number</span> : null} */}
                       
                     </div>
 
@@ -144,7 +163,7 @@ const Home = () => {
                       <button type="submit" id="next-btn" style={{ justifyContent: 'center' }} onClick={handleSubmit}>
                        Create Will
         
-                       {valid && ticked ? <Redirect to='/will-creator-tool'></Redirect>:null}
+                       {valid && ticked && allgood ? <Redirect to='/will-creator-tool'></Redirect>:null}
                       </button>
                     </div>
                   </form>
