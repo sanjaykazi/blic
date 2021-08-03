@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Faq from 'react-faq-component';
-
+import './faq.css';
 const data = {
   
   rows: [
@@ -42,18 +42,33 @@ const data = {
     }]
 }
 
+const styles = {
+  // bgColor: 'white',
+  titleTextColor: "#0072bc",
+  rowTitleColor: "#0072bc",
+   rowContentColor: 'grey',
+   arrowColor: "#0072bc",
+   rowTitleAlign:'center',
+};
+
+const config = {
+   animate: true,
+   arrowIcon: "+",
+  tabFocus: true
+};
 export default class App extends Component {
   render() {
     return (
       <>
       <div className = 'my-5'>
-      <h1 className = 'text-center'> Frequently Asked <strong style={{color:'blue'}}>Questions</strong></h1>
+      <h1 className = 'text-center'> <strong style={{color:'#0072bc'}}>  Frequently Asked Questions</strong></h1>
       </div>
       <div className = 'container-fluid mb-5' style = {{borderBottom:'2px solid grey', paddingBottom:'50px'}}>
           <div className = 'row'>
               <div className = 'col-8 mx-auto'>
                   <div className = 'row justify-content-center'>
-                  <Faq data={data}/>
+                  <Faq data={data} styles={styles}
+                config={config}/>
                   <div className = 'col-md-7 col-10 mx-auto'>
                   
         <div class="row ">

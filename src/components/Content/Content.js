@@ -139,7 +139,7 @@ function Content() {
                 setTabIndex(1);
             }
             else {
-                alert.show('All personal iformation fields are required')
+                alert.show('All personal information fields are required')
             }
         }
         else {
@@ -369,11 +369,12 @@ function Content() {
             alert.show('Asset Added Succesfully')
         }
         else {
-            if (totalShare < 100) //need to check (<)
-                alert.show('Assign 100% of the property')
+
+            if (totalShare < 100)
+                alert.show('Please allocate total 100% to the property')
             else
-                alert.show("More Than 100% Property Assigned")
-            
+                alert.show("You have over allocated property: Share % total for one asset should be 100%")
+
         }
     }
     function addAsset(e) {
@@ -449,9 +450,9 @@ function Content() {
         }
         else {
             if (totalShare < 100)
-                alert.show('Assign 100% of the property')
+                alert.show('Please allocate total 100% to the property')
             else
-                alert.show("More Than 100% Property Assigned")
+                alert.show("You have over allocated property: Share % total for one asset should be 100%")
         }
     }
     function removeImmovable(index) {
@@ -515,9 +516,9 @@ function Content() {
         }
         else {
             if (totalShare < 100)
-                alert.show('Assign 100% of the properties')
+                alert.show('Please allocate total 100% to the property')
             else
-                alert.show("More Than 100%  Property Assigned")
+                alert.show("You have over allocated property: Share % total for one asset should be 100%")
         }
     }
     function storeAlternate() {
@@ -553,18 +554,6 @@ function Content() {
         return `${date}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${year}`
     }
 
-    function sendEmail(e) {
-        e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-
-        emailjs.sendForm('service_quv44to', 'template_xt1jll9', e.target, 'user_sM9KXoqjsxA8dejCNkv0M')
-            .then((result) => {
-                window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
-            }, (error) => {
-                console.log(error.text); //shows error message
-            });
-    }
-
-
 
 
 
@@ -587,9 +576,9 @@ function Content() {
         }
         else {
             if (totalShare < 100)
-                alert.show('Assign 100% of the residuary properties')
+                alert.show('Please allocate total 100% to the property')
             else
-                alert.show("More Than 100% Residuary Property Assigned")
+                alert.show("You have over allocated property: Share % total for one asset should be 100%")
         }
     }
     return (
@@ -773,12 +762,17 @@ function Content() {
                                         <input value={executor['relation']} onChange={(e) => setExecRelation(e, index)}></input>
                                     </div>
                                     {executors.length === 1 || (executors.length === 2 && executors.length === index + 1) ?
-                                        <div style={{ justifyContent: "right" }} className='form-row'>
+                                        <div style={{ marginLeft:'30px',justifyContent: "right" }} className='form-row'>
                                             <button disabled={executors.length >= 3} onClick={(e) => addExecutor(e)} id="next-btn">Add Executor</button>
                                         </div> : ''}
                                 </div>)}
 
+
                             <div style={{ justifyContent: "right" }} className='form-row'>
+
+                            
+                            <div style={{ justifyContent: "right" , paddingTop:'50px'}} className='form-row'>
+
                                 <button type='submit' onClick={(e) => submitPersonal(e)} id="next-btn">NEXT: Add Beneficiary</button>
                             </div>
 
@@ -810,7 +804,7 @@ function Content() {
                                     {/* <p style={{ width: '275px', fontSize: '16px' }} className="note-para">(eg. friend, son, sister, etc.)</p> */}
                                     <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
                                 </div>
-                                {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right" }} className='form-row'>
+                                {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right", paddingTop:'25px' }} className='form-row'>
                                     <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
 
                                 </div></> : ''}
@@ -1020,7 +1014,7 @@ function Content() {
                                             </tbody>
                                         </table> : ''}
                                 </div>
-                                <h3 onClick={() => setMovVisible(movVisible === "none" ? 'flex' : 'none')} style={{ display: 'flex', justifyContent: 'space-between', cursor: 'pointer' }} className="asset-tab">My Movable Properties<ArrowDropDownIcon /></h3>
+                                <h3 onClick={() => setMovVisible(movVisible === "none" ? 'flex' : 'none')} style={{ display: 'flex', justifyContent: 'space-between', cursor: 'pointer' }} className="asset-tab">My Movable Property<ArrowDropDownIcon /></h3>
 
                                 <div style={{ display: movVisible, transition: '0.3s' }}>
                                     <form style={{ width: '100%' }}>
@@ -1236,7 +1230,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                     </form>
                                 </div>
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                    <a onClick={() => { setTabIndex(1) }} id="next-btn">PREV: Beneficiary</a>
+                                    <a onClick={() => { setTabIndex(1) }} id="next-btn">Previous</a>
                                     <a onClick={() => { initializeAlternate() }} id="next-btn">NEXT: Predecease Clause</a>
                                 </div>
                             </TabPanel>
@@ -1367,7 +1361,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                         </tbody>
                                     </table> : ''}
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                    <a onClick={() => { setTabIndex1(1) }} id="next-btn">PREV: Predecease Details</a>
+                                    <a onClick={() => { setTabIndex1(1) }} id="next-btn">Previous</a>
                                     <a onClick={() => { setResiduary1() }} id="next-btn">NEXT: Residuary Clause</a>
                                 </div>
                             </TabPanel>
@@ -1376,7 +1370,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                     <TabPanel>
 
                         <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                            <a onClick={() => { setTabIndex(2) }} id="next-btn">PREV: Asset</a>
+                            <a onClick={() => { setTabIndex(2) }} id="next-btn">Previous</a>
                             <button id='add-beneficiary' onClick={handleExportWithComponent()} primary={true}>Download Will</button>
                             <Will />
                         </div>
