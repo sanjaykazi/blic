@@ -52,11 +52,17 @@ h3{
     cursor: pointer;
     border: 0;
     outline: 0;
+    height:40px;
     margin-top: 5px;
     font-size: 16px;
     font-weight: 500;
     color: #F27317;
     border-bottom: 2px solid #0072bc;
+    border-top:0.1px solid #0072bc; 
+    border-left:0.1px solid #0072bc; 
+    border-right:0.1px solid #0072bc;
+    border-radius: 5px;
+    box-shadow: 1px 2px grey;
 }
 .form-item> input[type=date]{
     font-size: 16px;

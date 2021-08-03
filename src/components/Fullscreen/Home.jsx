@@ -93,19 +93,20 @@ const Home = () => {
 
             <div className='col-10 mx-auto'>
               <div className='row'>
-                <div className='col-md-8 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'>
-                  <h1 className='brand-name'> <strong >Will Creator</strong> </h1>
-                  <h2 className='my-3'>
+              <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'></div>
+                <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column' style={{justifyContent:'center'}}>
+                  <h1 className='brand-name'> <strong  style={{color:'white', fontSize:'45px'}}>Will Creator</strong> </h1>
+                  <h2 className='my-3' style={{fontSize:'21px',color:'white',alignContent:'center'}}>
                     “Secure your dear ones. Express your wishes so that your
                     loved ones stay protected.”
                   </h2>
                 </div>
-
-                <div className='col-lg-4 order-2 order-lg-2 d-flex flex-column justify-content-center' style={{ backgroundColor: 'grey', padding: '10px 50px 50px 50px', borderRadius: '13px' }}>
-                  <form  onSubmit={handleSubmit}>
+                <div className='col-md-1 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'></div>
+                <div className='col-lg-4 order-2 order-lg-2 d-flex flex-column justify-content-center' style={{ backgroundColor: 'white', padding: '10px 50px 50px 50px', borderRadius: '13px' }}>
+                  <form  onSubmit={handleSubmit} style={{paddingTop:'40px'}}>
                     <div class="mb-3">
                       <label class="form-label">Full Name <span className='required' style={{color:'#db2f23'}}>*</span></label>
-                      <input type="Name" class="form-control" value={values.fullname} 
+                      <input type="text" class="form-control" value={values.fullname} 
                       onChange={handleFullname} 
                       />
                      {submitted && !values.fullname ?  <span className="text-danger">please enter the fullname</span> : null}
@@ -118,17 +119,17 @@ const Home = () => {
                         {submitted && !values.phone ?  <span className="text-danger">please enter the phone number</span> : null}
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label ">Email address <span className='required' style={{color:'#db2f23'}}>*</span></label>
-                      <input class="form-control" value={values.email}  
+                      <label for="email" class="form-label ">Email address <span className='required' style={{color:'#db2f23'}}>*</span></label>
+                      <input type= 'email' id= 'email' name = 'email' class="form-control" value={values.email}  
                        onChange={handleEmail}
                       />
                          {submitted && !values.email ?  <span className="text-danger">please enter the email</span> : null}
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                      
                     </div>
 
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1" onClick={()=> {setTicked(true)}}/>
-                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none', color: 'white', cursor: 'pointer' }} onClick={() => setTicked(true)} >Terms and Conditions</a></label>
+                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none',  cursor: 'pointer' }} onClick={() => setTicked(true)} >Terms and Conditions</a></label>
                       <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
@@ -138,7 +139,7 @@ const Home = () => {
                       </div>
                     </div>
                     
-                    <div style={{ display: 'flex' }}>
+                    <div style={{ display: 'flex',justifyContent:'center' }}>
           
                       <button type="submit" id="next-btn" style={{ justifyContent: 'center' }} onClick={handleSubmit}>
                        Create Will

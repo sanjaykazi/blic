@@ -139,7 +139,7 @@ function Content() {
                 setTabIndex(1);
             }
             else {
-                alert.show('All personal iformation fields are required')
+                alert.show('All personal information fields are required')
             }
         }
         else {
@@ -1006,7 +1006,7 @@ function Content() {
                                             </tbody>
                                         </table> : ''}
                                 </div>
-                                <h3 onClick={() => setMovVisible(movVisible === "none" ? 'flex' : 'none')} style={{ display: 'flex', justifyContent: 'space-between', cursor: 'pointer' }} className="asset-tab">My Movable Properties<ArrowDropDownIcon /></h3>
+                                <h3 onClick={() => setMovVisible(movVisible === "none" ? 'flex' : 'none')} style={{ display: 'flex', justifyContent: 'space-between', cursor: 'pointer' }} className="asset-tab">My Movable Property<ArrowDropDownIcon /></h3>
 
                                 <div style={{ display: movVisible, transition: '0.3s' }}>
                                     <form style={{ width: '100%' }}>
@@ -1222,7 +1222,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                     </form>
                                 </div>
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                    <a onClick={() => { setTabIndex(1) }} id="next-btn">PREV: Beneficiary</a>
+                                    <a onClick={() => { setTabIndex(1) }} id="next-btn">Previous</a>
                                     <a onClick={() => { initializeAlternate() }} id="next-btn">NEXT: Predecease Clause</a>
                                 </div>
                             </TabPanel>
@@ -1280,7 +1280,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                         </tbody>
                                     </table> : ''}
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                    <a onClick={() => { setTabIndex1(1) }} id="next-btn">PREV: Predecease Details</a>
+                                    <a onClick={() => { setTabIndex1(1) }} id="next-btn">Previous</a>
                                     <a onClick={() => { setResiduary1() }} id="next-btn">NEXT: Residuary Clause</a>
                                 </div>
                             </TabPanel>
@@ -1289,7 +1289,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                     <TabPanel>
 
                         <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                            <a onClick={() => { setTabIndex(2) }} id="next-btn">PREV: Asset</a>
+                            <a onClick={() => { setTabIndex(2) }} id="next-btn">Previous</a>
                             <button id='add-beneficiary' onClick={handleExportWithComponent()} primary={true}>Download Will</button>
                             <Will />
                         </div>

@@ -8,45 +8,7 @@ html{
     margin: 0 !important;
     background-image: linear-gradient(100deg, #0072bc 0%, white 100%) !important;
     color: white !important;
-    height:95px;
+    height:80px;
     width:100%;
-}
-.banner > p{
-    margin-bottom: 50px !important;
-    font-family: AllianzSans !important;
-    color: #fff !important;
-    width: 50% !important;
-    line-height: 25px !important;
-}
-.banner-btns{
-    display: flex;
-    justify-content: left;
-}
-.banner-btns > a{
-    padding: 10px 25px !important;
-    margin: 10px !important;
-    margin-left: 0 !important;
-    border-radius: 17px !important;
-    text-align: center !important;
-    font-family: AllianzSansBold !important;
-    font-size: 1.2rem !important;
-}
-.banner-btns > a:visited{
-    color: white !important;
-}
-#start-button{
-    background-color:#f89c30 ;
-    border: 1px solid #f89c30;
-    text-decoration: none;
-    
-}
-#start-button:hover{
-    cursor: pointer;
-    background-color: #ffffff;
-    color: #f89c30;
-    border: 1px solid #f89c30;
-}
-#know-more{
-    cursor: pointer;
-    border: 3px solid white;
+    justify-content: right;
 }

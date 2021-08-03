@@ -3,13 +3,18 @@ import './Banner.css'
 import Logo from './logo.jpg';
 function Banner() {
     return (
-        <div className='banner'>
-            
-   <a class="navbar-brand" href="#" >
-    <img src={Logo} alt="Logo" style={{transform:'scale(0.7)',float:'right'}} />
-  </a>
+        <>
+        <div className='banner' >
+        
+   <div className= 'col-12' style={{marginTop:'0px !important', paddingTop:'0px'}}>
+    
+   <img src={Logo} alt="Logo" style={{transform:'scale(0.5)',float:'right',padddingTop:'20px'}} />
+    
+  </div>
         
         </div>
+
+        </>
     )
 }
 

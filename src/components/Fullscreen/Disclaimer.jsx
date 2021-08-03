@@ -3,7 +3,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 const Disclaimer = () => {
   return (
     <>
-      <MDBFooter color="blue" className="font-small pt-4 mt-4">
+      <MDBFooter color="blue" className="font-small pt-4 mt-4" style={{borderTop:'2px solid grey', marginTop:'10px'}}>
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow style={{ justifyContent: 'center' }}>
             <MDBCol md="10"  style={{color:'grey'}}>
