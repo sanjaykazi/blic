@@ -95,9 +95,9 @@ const Home = () => {
               <div className='row'>
               <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column'></div>
                 <div className='col-md-3 pt-5 pt-lg-0 order-1 order-lg-1 d-flex justify-content-center flex-column' style={{justifyContent:'center'}}>
-                  <h1 className='brand-name'> <strong  style={{color:'white', fontSize:'45px'}}>Will Creator</strong> </h1>
-                  <h2 className='my-3' style={{fontSize:'21px',color:'white',alignContent:'center'}}>
-                    “Secure your dear ones. Express your wishes so that your
+                  <h1 className='brand-name'> <strong  style={{color:'white', fontSize:'45px', marginTop:'20px'}}>Will Creator</strong> </h1>
+                  <h2 className='my-3' style={{color:'white',alignContent:'center'}}>
+                    “Secure your dear ones.</h2><h2> Express your wishes so that your
                     loved ones stay protected.”
                   </h2>
                 </div>

@@ -202,7 +202,7 @@ function Content() {
             }
             beneficiaries.push(beneficiary);
             setBeneficiary([]);
-            console.log(beneficiaries);
+            //console.log(beneficiaries);
             localStorage.setItem('beneficiaries', JSON.stringify(beneficiaries))
             alert.show('Beneficiary Added Succesfully')
         }
@@ -282,11 +282,15 @@ function Content() {
     const [immovVisible, setImmovVisible] = useState('none');
     function initializeShare() {
         const tempShare = []
+        if (beneficiaries.length === 0){
+            alert.show('Please add beneficiary')
+        }
+        else{
         beneficiaries.map((ben, index) => {
             tempShare.push({ index: index, name: ben[1], dob: ben[2], value: 0 })
         })
         setTabIndex(2)
-        setShare(tempShare);
+        setShare(tempShare);}
 
 
     }
@@ -768,7 +772,7 @@ function Content() {
                                 </div>)}
 
 
-                            <div style={{ justifyContent: "right" }} className='form-row'>
+                            <div style={{ justifyContent: "right" }} className='form-row'></div>
 
                             
                             <div style={{ justifyContent: "right" , paddingTop:'50px'}} className='form-row'>
@@ -1263,7 +1267,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                     <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
                                 </div>
                                 {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right" }} className='form-row'>
-                                    <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
+                                    <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Alternate Beneficiary</button>
 
                                 </div></> : ''}
                             </div>
@@ -1297,7 +1301,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                                 <input value={guardianRelation} onChange={(e) => setGuardianRelation(e.target.value)}></input>
                                             </div>
                                             {(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right", marginLeft: 'auto' }} className='form-row'>
-                                                <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
+                                                <button type='submit' onClick={addBeneficiary} id="add-beneficiary" style={{marginTop:'20px'}}><AddIcon /> Add Beneficiary</button>
 
                                             </div></> : ''}
                                         </div>
@@ -1305,10 +1309,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                     : ''
                             }
 
-                            <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                <a onClick={() => { setTabIndex(0) }} id="next-btn">Previous</a>
-                                <a onClick={() => { initializeShare() }} id="next-btn">Next: Asset Details</a>
-                            </div>
+                           
                         </form>                        
                                 {alternate ?
                                     <table className="styled-table">
