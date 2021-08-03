@@ -287,8 +287,8 @@ function Content() {
         })
         setTabIndex(2)
         setShare(tempShare);
-        
-        
+
+
     }
     function handleShareChange(e, name, dob, index) {
         const tempshare = share.slice(0);
@@ -369,10 +369,11 @@ function Content() {
             alert.show('Asset Added Succesfully')
         }
         else {
-            if (totalShare < 100)
+            if (totalShare < 100) //need to check (<)
                 alert.show('Assign 100% of the property')
             else
                 alert.show("More Than 100% Property Assigned")
+            
         }
     }
     function addAsset(e) {
@@ -492,7 +493,7 @@ function Content() {
     const [alternate, setAlternate] = useState([])
     function initializeAlternate() {
         var tempAlt = []
-        
+
         immovableAssets?.map((asset, index) => {
             tempAlt.push({ assesType: asset['assetType'], details: asset['description'], altDetails: '' })
         })
@@ -500,7 +501,7 @@ function Content() {
             tempAlt.push({ assesType: asset['assetType'], details: asset['description'], altDetails: '' })
         })
         checkValid()
-      
+
     }
     function checkValid() {
         var totalShare = 0;
@@ -534,7 +535,7 @@ function Content() {
         }
     }
     const handleExportWithComponent = (event) => {
-        <Will/>
+        <Will />
         // ReactPDF.render(<Will />, `${__dirname}/example.pdf`);
     };
 
@@ -554,15 +555,15 @@ function Content() {
 
     function sendEmail(e) {
         e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-    
+
         emailjs.sendForm('service_quv44to', 'template_xt1jll9', e.target, 'user_sM9KXoqjsxA8dejCNkv0M')
-          .then((result) => {
-              window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
-          }, (error) => {
-              console.log(error.text);
-          });
-      }
-    
+            .then((result) => {
+                window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+            }, (error) => {
+                console.log(error.text); //shows error message
+            });
+    }
+
 
 
 
@@ -620,20 +621,20 @@ function Content() {
                                         <option value="">N/A</option>
                                     </select>
                                 </div>
-                                <div className='form-item' style={{width:'23%'}}>
+                                <div className='form-item' style={{ width: '23%' }}>
                                     <label> Full Name</label>
                                     <input required value={name ? name : ''} onChange={(e) => { setName(e.target.value) }}></input>
                                 </div>
-                                <div className='form-item' style={{width:'30%',marginLeft:'180px'}}>
+                                <div className='form-item' style={{ width: '30%', marginLeft: '180px' }}>
                                     <label>DOB</label>
                                     <input type='date' value={dob ? dob : ''} onChange={(e) => { setDob(e.target.value) }}></input>
                                 </div>
-                                
+
                             </div>
-                            <div className="form-row" style={{marginTop:'20px'}}>
-                            <div className='form-item' style={{width:'30%'}}>
+                            <div className="form-row" style={{ marginTop: '20px' }}>
+                                <div className='form-item' style={{ width: '30%' }}>
                                     <label>Occupation: </label>
-                                    <p style={{color:'white'}}>(Note:Muslim religion followers shall require a customized Will due to distinctive Islamic
+                                    <p style={{ color: 'white' }}>(Note:Muslim religion followers shall require a customized Will due to distinctive Islamic
                                         laws. )</p>
                                     <select value={occupation ? occupation : 'Salaried'} onChange={(e) => { setOccupation(e.target.value); console.log(dob) }}>
                                         <option value="Salaried">Salaried</option>
@@ -646,7 +647,7 @@ function Content() {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-                                <div className='form-item' style={{width:'30%',marginLeft:'170px'}}>
+                                <div className='form-item' style={{ width: '30%', marginLeft: '170px' }}>
                                     <label>Religion:</label>
                                     <p>(Note:Muslim religion followers shall require a customized Will due to distinctive Islamic
                                         laws. To know more contact us at experts@lawtarazoo.com)</p>
@@ -660,7 +661,7 @@ function Content() {
                                     </select>
                                 </div>
                             </div>
-                            <div className="form-row"style={{marginTop:'70px'}}>
+                            <div className="form-row" style={{ marginTop: '70px' }}>
                                 <div className="form-item" >
                                     <label>Marital Status</label>
                                     <select value={maritalStatus} onChange={(e) => setMaritalStatus(e.target.value)}>
@@ -710,21 +711,21 @@ function Content() {
                                         </div>
                                     </div>)} </div> :
                                 ''}
-                            
+
                             <h3>Present Address</h3>
                             <div className="form-row address-row">
                                 <div className='form-item'>
                                     <div className="form-row"> <label>Address Line 1* </label><p style={{ marginLeft: '10px' }}> (House Number, Building Name, Etc)</p></div>
                                     <input style={{ width: '380px' }} value={present1 ? present1 : ''} onChange={(e) => { setpresent1(e.target.value) }}></input>
                                 </div>
-                            
-                            
+
+
                                 <div className='form-item'>
                                     <div className="form-row"> <label>Address Line 2 </label><p style={{ marginLeft: '10px' }}> (Street, Society, Colony Name)</p></div>
 
                                     <input style={{ width: '380px' }} value={present2 ? present2 : ''} onChange={(e) => { setpresent2(e.target.value) }}></input>
                                 </div>
-                           
+
                             </div>
                             <div className="form-row">
                                 <div className='form-item'>
@@ -736,8 +737,8 @@ function Content() {
                                     <input value={presentState ? presentState : ''} onChange={(e) => { setPresentState(e.target.value) }}></input>
                                 </div>
 
-                            
-                            
+
+
                                 <div className='form-item'>
                                     <label>Pin*</label>
                                     <input value={presentPin ? presentPin : ''} onChange={(e) => { setPresentPin(e.target.value) }}></input>
@@ -776,7 +777,7 @@ function Content() {
                                             <button disabled={executors.length >= 3} onClick={(e) => addExecutor(e)} id="next-btn">Add Executor</button>
                                         </div> : ''}
                                 </div>)}
-                            
+
                             <div style={{ justifyContent: "right" }} className='form-row'>
                                 <button type='submit' onClick={(e) => submitPersonal(e)} id="next-btn">NEXT: Add Beneficiary</button>
                             </div>
@@ -785,7 +786,7 @@ function Content() {
                     </TabPanel>
                     <TabPanel>
                         <h2>Beneficiary Details</h2>
-                        <form id='beneficiary-form' style={{marginTop:'60px'}}>
+                        <form id='beneficiary-form' style={{ marginTop: '60px' }}>
                             <div className='form-row'>
                                 <div className='form-item'>
                                     <label>Title: </label>
@@ -804,8 +805,8 @@ function Content() {
                                     <label>DOB</label>
                                     <input value={benDOB} onChange={(e) => setBenDOB(e.target.value)} type='date'></input>
                                 </div>
-                                <div className='form-item' style={{width:'300px'}}>
-                                <label>Relation with Author of Will: </label>
+                                <div className='form-item' style={{ width: '300px' }}>
+                                    <label>Relation with Author of Will: </label>
                                     {/* <p style={{ width: '275px', fontSize: '16px' }} className="note-para">(eg. friend, son, sister, etc.)</p> */}
                                     <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
                                 </div>
@@ -1047,14 +1048,14 @@ function Content() {
                                                 </select>
                                             </div>
                                         </div>
-                                        {(assetType === "Mutual Funds" ) ?
+                                        {(assetType === "Mutual Funds") ?
                                             < div className="form-row">
                                                 <div className="form-item">
                                                     <label>Description of {assetType}</label>
                                                     <p>(*Note- Specify the
-                                                            mutual funds held by you on present date and any change
-                                                                subsequently is taken care of by the residuary clause in
-                                                                                                                the Will.)</p>
+                                                        mutual funds held by you on present date and any change
+                                                        subsequently is taken care of by the residuary clause in
+                                                        the Will.)</p>
                                                     <textarea style={{ width: '600px', height: '250px' }} value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                                 </div>
                                             </div>
@@ -1064,10 +1065,10 @@ function Content() {
                                             < div className="form-row">
                                                 <div className="form-item">
                                                     <label>Description of {assetType}</label>
-                                                    
-                                                    <textarea style={{ width: '600px', height: '250px'}} placeholder='e.g.
+
+                                                    <textarea style={{ width: '600px', height: '250px' }} placeholder='e.g.
 Gold bangles, necklaces, silver ornaments,silver utensils, etc ' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                                           
+
                                                 </div>
                                             </div>
                                             : ''
@@ -1076,45 +1077,45 @@ Gold bangles, necklaces, silver ornaments,silver utensils, etc ' value={descript
                                             < div className="form-row">
                                                 <div className="form-item">
                                                     <label>Description of {assetType}</label>
-                                                    
-                                                    <textarea style={{ width: '600px', height: '250px'}} placeholder='e.g.Share in the Partnership Firm XYZ, Proprietorship, or any business venture, etc.' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-                                           
+
+                                                    <textarea style={{ width: '600px', height: '250px' }} placeholder='e.g.Share in the Partnership Firm XYZ, Proprietorship, or any business venture, etc.' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+
                                                 </div>
                                             </div>
                                             : ''
                                         }
-                                        {(assetType === "Digital Asset" ) ?
+                                        {(assetType === "Digital Asset") ?
                                             < div className="form-row">
                                                 <div className="form-item">
                                                     <label>Description of {assetType}</label>
-                                                    
+
                                                     <textarea style={{ width: '600px', height: '250px' }} placeholder='e.g. E-mail accounts, Website urls, Bitcoins, etc' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                                 </div>
                                             </div>
                                             : ''
                                         }
-                                        {(assetType === "Electronics and Appliances")?
+                                        {(assetType === "Electronics and Appliances") ?
                                             < div className="form-row">
-                                            <div className="form-item">
-                                                <label>Description of {assetType}</label>
-                                                
-                                                <textarea style={{ width: '600px', height: '250px' }} placeholder='(e.g.
+                                                <div className="form-item">
+                                                    <label>Description of {assetType}</label>
+
+                                                    <textarea style={{ width: '600px', height: '250px' }} placeholder='(e.g.
 Laptops, Mobiles, Tablets, ipad, etc)' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                                                </div>
                                             </div>
-                                        </div>
-                                        : ''
+                                            : ''
 
                                         }
-                                        {( assetType === "Any other Investments" )?
+                                        {(assetType === "Any other Investments") ?
                                             < div className="form-row">
-                                            <div className="form-item">
-                                                <label>Description of {assetType}</label>
-                                                
-                                                <textarea style={{ width: '600px', height: '250px' }} placeholder='any
+                                                <div className="form-item">
+                                                    <label>Description of {assetType}</label>
+
+                                                    <textarea style={{ width: '600px', height: '250px' }} placeholder='any
 kind of investment apart from the list mentioned above' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                                                </div>
                                             </div>
-                                        </div>
-                                        : ''
+                                            : ''
 
 
                                         }
@@ -1243,7 +1244,78 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                 <h2>Predecease Clause</h2>
                                 <h3>Details of Alternate Beneficiary</h3>
                                 <p className="note-para">(Note- If any of the previously-stated Beneficiary predecease the author of  the Will by any reason, in such case who shall receive the assets or benefits under Will.)</p>
+                                    <form id='beneficiary-form' style={{ marginTop: '60px' }}>
+                            <div className='form-row'>
+                                <div className='form-item'>
+                                    <label>Title: </label>
+                                    <select value={benSal} onChange={(e) => setBenSal(e.target.value)}>
+                                        <option value="Mr">Mr.</option>
+                                        <option value="Ms">Ms.</option>
+                                        <option value="Mrs">Mrs.</option>
+                                        <option value="">N/A</option>
+                                    </select>
+                                </div>
+                                <div className='form-item'>
+                                    <label> Full Name</label>
+                                    <input value={benName} onChange={(e) => setBenName(e.target.value)}></input>
+                                </div>
+                                <div className='form-item'>
+                                    <label>DOB</label>
+                                    <input value={benDOB} onChange={(e) => setBenDOB(e.target.value)} type='date'></input>
+                                </div>
+                                <div className='form-item' style={{ width: '300px' }}>
+                                    <label>Relation with Author of Will: </label>
+                                    {/* <p style={{ width: '275px', fontSize: '16px' }} className="note-para">(eg. friend, son, sister, etc.)</p> */}
+                                    <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
+                                </div>
+                                {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right" }} className='form-row'>
+                                    <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
 
+                                </div></> : ''}
+                            </div>
+                            {
+                                getAge(benDOB) < 18 ?
+                                    <div>
+                                        <h3>Guardian details</h3>
+                                        <p className="note-para">As the listed beneficiary is Minor, kindly appoint a Guardian*<br />
+                                            (Note: Guardian should be such a person who will act as a trustee and whatever assets are being receivable by a Minor under WILL be maintained by a Guardian on behalf of a minor till the time he turns 18 years of age.)
+                                        </p>
+                                        <div className='form-row'>
+                                            <div className='form-item'>
+                                                <label>Title: </label>
+                                                <select value={guardianSal} onChange={(e) => setGuardianSal(e.target.value)}>
+                                                    <option value="Mr">Mr.</option>
+                                                    <option value="Ms">Ms.</option>
+                                                    <option value="Mrs">Mrs.</option>
+                                                    <option value="">N/A</option>
+                                                </select>
+                                            </div>
+                                            <div className='form-item'>
+                                                <label> Full Name</label>
+                                                <input value={guardianName} onChange={(e) => setGuardianName(e.target.value)}></input>
+                                            </div>
+                                            <div className='form-item'>
+                                                <label>DOB</label>
+                                                <input value={guardianDOB} onChange={(e) => setGuardianDOB(e.target.value)} type='date'></input>
+                                            </div>
+                                            <div className='form-item'>
+                                                <label>Relation with Minor: </label>
+                                                <input value={guardianRelation} onChange={(e) => setGuardianRelation(e.target.value)}></input>
+                                            </div>
+                                            {(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right", marginLeft: 'auto' }} className='form-row'>
+                                                <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Beneficiary</button>
+
+                                            </div></> : ''}
+                                        </div>
+                                    </div>
+                                    : ''
+                            }
+
+                            <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
+                                <a onClick={() => { setTabIndex(0) }} id="next-btn">Previous</a>
+                                <a onClick={() => { initializeShare() }} id="next-btn">Next: Asset Details</a>
+                            </div>
+                        </form>                        
                                 {alternate ?
                                     <table className="styled-table">
                                         <thead>
@@ -1274,10 +1346,12 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                 <h2>Residuary Clause</h2>
                                 <h3>Whom would you like to bequeth your residual properties?</h3>
                                 <p className="note-para">(The properties which you have not included in the Will or which you might acquire in future)</p>
+                                
                                 {beneficiaries.length !== 0 ?
                                     <table className="styled-table">
                                         <thead>
                                             <tr>
+                                                <th>No.</th>
                                                 <th>No.</th>
                                                 <th>Name</th>
                                                 <th>% Share</th>
@@ -1307,9 +1381,9 @@ kind of investment apart from the list mentioned above' value={description} onCh
                             <Will />
                         </div>
                     </TabPanel>
-                </Tabs>                                    
+                </Tabs>
             </div >
-            <Footer/>
+            <Footer />
         </div >
     )
 }
