@@ -7,7 +7,7 @@ const Info = () => {
             <div className='my-5' style={{borderBottom:'2px solid grey'}}>
             <div class="card mb-3" style ={{border:'none'}}>
             <div className="embed-responsive embed-responsive-16by9" style={{ display:'flex',justifyContent: 'center'}}>
-                    <iframe width='550px' height='300px' title="Embeds Page" className="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg"
+                    <iframe width='550px' height='300px' title="Embeds Page" className="embed-responsive-item" src="https://youtu.be/uoTAVsSeMnY"
                         allowfullscreen style={{ marginTop: '15px', borderRadius: '13px' }}></iframe>
 
 
