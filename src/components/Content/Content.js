@@ -1829,6 +1829,7 @@ kind of investment apart from the list mentioned above"
                             <th>% Share</th>
                           </tr>
                         </thead>
+                        {/* I changed the ocde below and no of codelines increased because i did format document */}
                         <tbody>
                           {beneficiaries.map((ben, index) => (
                             <tr key={index}>
