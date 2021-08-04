@@ -1429,30 +1429,7 @@ function Content() {
                       </button>
                     </div>
                   </form>
-                  {/* <h3>Allocate to: </h3>
-                                        {beneficiaries.length !== 0 ?
-                                            <table className="styled-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Name</th>
-                                                        <th>% Share</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {beneficiaries.map((ben, index) =>
-                                                        <tr key={index}>
-                                                            <td>{index + 1}</td>
-                                                            <td>{ben[1]}</td>
-                                        
-                                                            <td><input value={share[index] >0 ? share[index]['value'] : 0} onChange={(e) => handleShareChange(e, ben[1], ben[2], index)} type="number" min="0" max="100"></input>%</td>
-                                                        </tr>)}
-                                                </tbody>
-                                            </table> : ''}
-                                        <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                            <button type='submit' onClick={(e) => addImmovableAsset(e)} id="add-beneficiary"><AddIcon /> ADD ASSET</button>
-                                        </div>
-                                    </form> */}
+
                   {immovableAssets.length !== 0 ? (
                     <h3>Immovable Assets Allocation</h3>
                   ) : (
