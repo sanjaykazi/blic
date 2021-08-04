@@ -791,7 +791,7 @@ function Content() {
                             
                             <div style={{ justifyContent: "right" , paddingTop:'50px'}} className='form-row'>
 
-                                <button type='submit' onClick={(e) => submitPersonal(e)} id="next-btn">NEXT: Add Beneficiary</button>
+                                <button type='submit' onClick={(e) => submitPersonal(e)} id="next-btn">Next: Add Beneficiary</button>
                             </div>
 
                         </form>
@@ -1362,7 +1362,6 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>No.</th>
                                                 <th>Name</th>
                                                 <th>% Share</th>
                                             </tr>
@@ -1378,7 +1377,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                     </table> : ''}
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
                                     <a onClick={() => { setTabIndex1(1) }} id="next-btn">Previous</a>
-                                    <a onClick={() => { setResiduary1() }} id="next-btn">NEXT: Residuary Clause</a>
+                                    <a onClick={() => { setResiduary1() }} id="next-btn">Next: Residuary Clause</a>
                                 </div>
                             </TabPanel>
                         </Tabs>

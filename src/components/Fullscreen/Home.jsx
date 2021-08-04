@@ -35,16 +35,31 @@ function MyVerticallyCenteredModal(props) {
 
 const Home = () => {
   
+  function isEmail(email)
+    {
+      var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+if(email.match(mailformat))
+{
+
+setEmailvalid(true)
+return true;
+}
+else
+{
+setEmailvalid(false)
+return false;
+     }}
+
 
   
   function handleSubmit(e) {
-    e.preventDefault();
-    console.log('inhandlesubmit')
+    //e.preventDefault();
+   
     setSubmitted(true);
-    console.log(values);
-    if((submitted && values.fullname) && (values.email && values.phone)){
+  
+    if((submitted && values.fullname) && (emailvalid && values.phone)){
       setValid(true);
-      checkvalid();
+      //checkvalid();
     }
     
     }
@@ -57,33 +72,33 @@ const Home = () => {
     email:"",
   });
 
-  function checkvalid(){
+  // function checkvalid(){
   
-    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)){
-      setEmailvalid(true);
-    }
-    else{
-      setEmailvalid(false)
-    }
-    if(isNaN(values.fullname)){
-      setNamevalid(true);
-    }
-    else{
-      setNamevalid(false);
-    }
-    if (Number(values.phone) >100000000){
-      setPhonevalid(true);
-    }
-    else{
-      setPhonevalid(false)
-    }
-    let t = phonevalid && namevalid && phonevalid
-    setAllgood(true);
-  }
+
+  //   if(isEmail(values.email.toLowerCase())){
+  //     setEmailvalid(true);
+  //   }
+    
+    
+  //   if(isNaN(values.fullname)){
+  //     setNamevalid(true);
+  //   }
+  //   else{
+  //     setNamevalid(false);
+  //   }
+  //   if (Number(values.phone) >100000000){
+  //     setPhonevalid(true);
+  //   }
+  //   else{
+  //     setPhonevalid(false)
+  //   }
+  //   let t = phonevalid && namevalid && phonevalid
+  //   setAllgood(t);
+  // }
   const[allgood, setAllgood] =useState(true)
   const[namevalid,setNamevalid]=useState(false)
   const[phonevalid, setPhonevalid]=useState(false);
-  const[emailvalid, setEmailvalid]=useState(false);
+  const[emailvalid, setEmailvalid]=useState(true);
   const [check,setCheck]= useState(false);
   const[submitted, setSubmitted] = useState(false);
   const [modalShow, setModalShow] = useState(false);
@@ -100,6 +115,7 @@ const Home = () => {
   }
 
   const handleEmail = (event) => {
+    isEmail(values.email);
     setValues({...values, email: event.target.value})
   }
   const toggleTick = (event) => {
@@ -150,8 +166,9 @@ const Home = () => {
                       <input type= 'email' id= 'email' name = 'email' class="form-control" value={values.email}  
                        onChange={handleEmail}
                       />
-                         {submitted && !emailvalid ?  <span className="text-danger">please enter the valid email</span> : null}
-                         {/* {submitted && !values.email ?  <span className="text-danger">please enter the phone number</span> : null} */}
+                        
+                         {(submitted && !emailvalid) ?  <span className="text-danger">please enter the valid email</span>: null  }
+                        
                       
                     </div>
 
@@ -172,7 +189,7 @@ const Home = () => {
                       <button type="submit" id="next-btn" style={{ justifyContent: 'center' }} onClick={handleSubmit}>
                        Create Will
         
-                       {valid && ticked && allgood ? <Redirect to='/will-creator-tool'></Redirect>:null}
+                       {valid && ticked ? <Redirect to='/will-creator-tool'></Redirect>:null}
                       </button>
                     </div>
                   </form>
