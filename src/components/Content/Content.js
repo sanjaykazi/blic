@@ -17,7 +17,7 @@ import emailjs from 'emailjs-com';
 
 function Content() {
     const [tabIndex, setTabIndex] = useState(0);
-
+    const [allownext,setAllownext]= useState(false);
     const alert = useAlert()
     const [name, setName] = useState('');
     const [sal, setSal] = useState('Mr');
@@ -339,11 +339,7 @@ function Content() {
         share.map((temp) => {
             totalShare = totalShare + Number(temp['value']);
         })
-        share.map((temp) => {
-            if (temp['value'].length ===0){
-                temp['value']=0
-            } 
-        })
+        
             
 
         
@@ -381,6 +377,7 @@ function Content() {
             console.log(immovableAssets);
             localStorage.setItem("immovableAssets", JSON.stringify(immovableAssets));
             alert.show('Asset Added Succesfully')
+            setAllownext(true);
         }
         else {
 
@@ -395,7 +392,6 @@ function Content() {
         e.preventDefault();
         var totalShare = 0;
         share.map((temp) => {
-            
             totalShare = totalShare + Number(temp['value']);
         })
         if (totalShare === 100) {
@@ -516,7 +512,9 @@ function Content() {
         movableAssets?.map((asset, index) => {
             tempAlt.push({ assesType: asset['assetType'], details: asset['description'], altDetails: '' })
         })
-        checkValid()
+        setAlternate(tempAlt)
+        checkValid();
+
 
     }
     function checkValid() {
@@ -529,7 +527,12 @@ function Content() {
             localStorage.setItem('residuary', JSON.stringify(share));
             setTabIndex1(1)
         }
+        if(allownext){
+            setTabIndex1(1);
+            return
+        }
         else {
+            
             if (totalShare < 100)
                 alert.show('Please allocate total 100% to the property')
             else
@@ -591,9 +594,9 @@ function Content() {
         }
         else {
             if (totalShare < 100)
-                alert.show('Please allocate total 100% to the property')
+                alert.show('Assign 100% of the residuary properties')
             else
-                alert.show("You have over allocated property: Share % total for one asset should be 100%")
+                alert.show("More Than 100% Residuary Property Assigned")
         }
     }
     return (
@@ -1002,7 +1005,7 @@ function Content() {
                                                 </tbody>
                                             </table> : ''}
                                         <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                            <button type='submit' onClick={(e) => addImmovableAsset(e)} id="add-beneficiary"><AddIcon /> ADD MORE</button>
+                                            <button type='submit' onClick={(e) => addImmovableAsset(e)} id="add-beneficiary"><AddIcon /> ADD ASSET</button>
                                         </div>
                                     </form>
                                     {immovableAssets.length !== 0 ? <h3>Immovable Assets Allocation</h3> : ''}
@@ -1066,18 +1069,18 @@ function Content() {
                                                         mutual funds held by you on present date and any change
                                                         subsequently is taken care of by the residuary clause in
                                                         the Will.)</p>
-                                                    <textarea style={{ width: '600px', height: '250px' }} value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                                                    <textarea style={{ width: '600px', height: '250px' }} value={description} onChange={(e) => setDescription(e.target.value)} ></textarea>
                                                 </div>
                                             </div>
                                             : ''
                                         }
-                                        {(assetType === "Jwellery") ?
+                                        {(assetType === "Jewellery") ?
                                             < div className="form-row">
                                                 <div className="form-item">
                                                     <label>Description of {assetType}</label>
 
-                                                    <textarea style={{ width: '600px', height: '250px' }} placeholder='e.g.
-Gold bangles, necklaces, silver ornaments,silver utensils, etc ' value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                                                    <textarea style={{ width: '600px', height: '250px' }}  value={description} onChange={(e) => setDescription(e.target.value)} placeholder='e.g.
+Gold bangles, necklaces, silver ornaments,silver utensils, etc '></textarea>
 
                                                 </div>
                                             </div>
@@ -1216,7 +1219,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                                 </tbody>
                                             </table> : ''}
                                         <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
-                                            <button type='submit' onClick={(e) => addAsset(e)} id="add-beneficiary"><AddIcon /> ADD MORE</button>
+                                            <button type='submit' onClick={(e) => addAsset(e)} id="add-beneficiary"><AddIcon /> ADD ASSET</button>
                                         </div>
                                         {movableAssets.length !== 0 ? <h3>Movable Assets Allocation</h3> : ''}
                                         {movableAssets.length !== 0 ?
@@ -1247,15 +1250,15 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                 </div>
                                 <div style={{ justifyContent: "right", marginTop: '20px' }} className='form-row'>
                                     <a onClick={() => { setTabIndex(1) }} id="next-btn">Previous</a>
-                                    <a onClick={() => { initializeAlternate() }} id="next-btn">NEXT: Predecease Clause</a>
+                                    <a onClick={() => { initializeAlternate() }} id="next-btn">Next: Alternate Beneficiary</a>
                                 </div>
                             </TabPanel>
                             <TabPanel>
-                                <h2>Predecease Clause</h2>
-                                <h3>Details of Alternate Beneficiary</h3>
+                                
+                                <h2>Details of Alternate Beneficiary</h2>
                                 <p className="note-para">(Note- If any of the previously-stated Beneficiary predecease the author of  the Will by any reason, in such case who shall receive the assets or benefits under Will.)</p>
-                                    <form id='beneficiary-form' style={{ marginTop: '60px' }}>
-                            <div className='form-row'>
+                                    {/* <form id='beneficiary-form' style={{ marginTop: '60px' }}> */}
+                            {/* <div className='form-row'>
                                 <div className='form-item'>
                                     <label>Title: </label>
                                     <select value={benSal} onChange={(e) => setBenSal(e.target.value)}>
@@ -1276,7 +1279,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                                 <div className='form-item' style={{ width: '300px' }}>
                                     <label>Relation with Author of Will: </label>
                                     {/* <p style={{ width: '275px', fontSize: '16px' }} className="note-para">(eg. friend, son, sister, etc.)</p> */}
-                                    <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
+                                    {/* <input value={benRelation} onChange={(e) => setBenRelation(e.target.value)} placeholder='eg.  friend, son, sister, etc. '></input>
                                 </div>
                                 {!(getAge(benDOB) < 18) ? <><div style={{ justifyContent: "right" }} className='form-row'>
                                     <button type='submit' onClick={addBeneficiary} id="add-beneficiary"><AddIcon /> Add Alternate Beneficiary</button>
@@ -1322,7 +1325,7 @@ kind of investment apart from the list mentioned above' value={description} onCh
                             }
 
                            
-                        </form>                        
+                        </form>                         */} 
                                 {alternate ?
                                     <table className="styled-table">
                                         <thead>

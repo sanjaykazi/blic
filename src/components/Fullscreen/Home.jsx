@@ -44,7 +44,7 @@ const Home = () => {
     console.log(values);
     if((submitted && values.fullname) && (values.email && values.phone)){
       setValid(true);
-   
+      checkvalid();
     }
     
     }
@@ -57,19 +57,28 @@ const Home = () => {
     email:"",
   });
 
-  function checkvalid(e){
-    e.preventDefault();
+  function checkvalid(){
+  
     if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)){
       setEmailvalid(true);
+    }
+    else{
+      setEmailvalid(false)
     }
     if(isNaN(values.fullname)){
       setNamevalid(true);
     }
-    if (values.phone.length ===10){
+    else{
+      setNamevalid(false);
+    }
+    if (Number(values.phone) >100000000){
       setPhonevalid(true);
     }
+    else{
+      setPhonevalid(false)
+    }
     let t = phonevalid && namevalid && phonevalid
-    setAllgood(t);
+    setAllgood(true);
   }
   const[allgood, setAllgood] =useState(true)
   const[namevalid,setNamevalid]=useState(false)
@@ -134,7 +143,7 @@ const Home = () => {
                       onChange={handlePhone}
                       />
                         {submitted && !values.phone ?  <span className="text-danger">please enter the phone number</span> : null}
-                        {/* {submitted && phonevalid ?  <span className="text-danger">please enter the valid phone number</span> : null} */}
+                        {submitted && phonevalid ?  <span className="text-danger">please enter the valid phone number</span> : null}
                     </div>
                     <div class="mb-3">
                       <label for="email" class="form-label ">Email address <span className='required' style={{color:'#db2f23'}}>*</span></label>
@@ -148,7 +157,7 @@ const Home = () => {
 
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1" onClick={()=> {setTicked(true)}}/>
-                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none',  cursor: 'pointer' }} onClick={() => setTicked(true)} >Terms and Conditions</a></label>
+                      <label class="form-check-label" for="exampleCheck1"> I accept all <a className='button' style={{ textDecoration: 'none',  cursor: 'pointer' }} onClick={() => setModalShow(true)} >Terms and Conditions</a></label>
                       <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
